@@ -3,6 +3,7 @@ import { PoetrySearch } from './features/poetry-search/poetry-search';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [PoetrySearch],
   templateUrl: './app.html',
   styleUrl: './app.css'
