@@ -1,6 +1,6 @@
 .error-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   padding: 1rem;
   margin: 1rem 0;
@@ -12,10 +12,37 @@
 
 .error-icon {
   font-size: 24px;
+  flex-shrink: 0;
+}
+
+.error-content {
+  flex: 1;
 }
 
 .error-message {
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   font-size: 14px;
   font-weight: 500;
+}
+
+.error-details {
+  margin: 0;
+  font-size: 12px;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.status-code,
+.error-type {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  background-color: rgba(204, 51, 51, 0.15);
+  border-radius: 3px;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.status-code {
+  color: #a00;
 }

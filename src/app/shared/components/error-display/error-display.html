@@ -1,6 +1,14 @@
 @if (error) {
   <div class="error-container">
     <div class="error-icon">⚠️</div>
-    <p class="error-message">{{ error.message }}</p>
+    <div class="error-content">
+      <p class="error-message">{{ error.message }}</p>
+      <p class="error-details">
+        @if (error.statusCode) {
+          <span class="status-code">HTTP {{ error.statusCode }}</span>
+        }
+        <span class="error-type">{{ error.type }}</span>
+      </p>
+    </div>
   </div>
 }

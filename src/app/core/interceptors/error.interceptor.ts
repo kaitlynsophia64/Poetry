@@ -10,22 +10,29 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       if (error.status === 0) {
         apiError = new ApiError(
           ErrorType.NETWORK_ERROR,
-          'Network error. Please check your connection.'
+          'Network error. Please check your connection.',
+          0,
+          error
         );
       } else if (error.status === 404) {
         apiError = new ApiError(
           ErrorType.NOT_FOUND,
-          'No poems found matching your search.'
+          'No poems found matching your search.',
+          404,
+          error
         );
       } else if (error.status >= 500) {
         apiError = new ApiError(
           ErrorType.API_ERROR,
-          'Server error. Please try again later.'
+          'Server error. Please try again later.',
+          error.status,
+          error
         );
       } else {
         apiError = new ApiError(
           ErrorType.API_ERROR,
           'An error occurred while fetching poems.',
+          error.status,
           error
         );
       }

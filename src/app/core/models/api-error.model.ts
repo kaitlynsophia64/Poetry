@@ -9,6 +9,7 @@ export class ApiError extends Error {
   constructor(
     public type: ErrorType,
     public override message: string,
+    public statusCode?: number,
     public originalError?: any
   ) {
     super(message);
