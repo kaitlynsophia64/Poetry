@@ -10,7 +10,9 @@
   @if (expanded) {
     <div class="poem-details">
       <div class="poem-meta">
-        <span class="line-count">{{ poem.linecount }} lines</span>
+        <span class="meta-badge line-count">{{ poem.linecount }} lines</span>
+        <span class="meta-badge word-count">{{ wordCount }} words</span>
+        <span class="meta-badge language">English</span>
       </div>
       <div class="poem-text">
         @for (line of poem.lines; track $index) {

@@ -46,16 +46,30 @@
 
 .poem-meta {
   margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.line-count {
+.meta-badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background-color: #3498db;
   color: white;
   border-radius: 12px;
   font-size: 12px;
   font-weight: 600;
+}
+
+.line-count {
+  background-color: #3498db;
+}
+
+.word-count {
+  background-color: #9b59b6;
+}
+
+.language {
+  background-color: #2ecc71;
 }
 
 .poem-text {

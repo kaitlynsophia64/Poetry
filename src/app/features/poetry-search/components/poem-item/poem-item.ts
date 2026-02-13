@@ -15,4 +15,12 @@ export class PoemItem {
   toggleExpand(): void {
     this.expanded = !this.expanded;
   }
+
+  get wordCount(): number {
+    return this.poem.lines
+      .join(' ')
+      .split(/\s+/)
+      .filter(word => word.length > 0)
+      .length;
+  }
 }
