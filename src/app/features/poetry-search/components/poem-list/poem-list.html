@@ -1,0 +1,6 @@
+<div class="poem-list">
+  <h2>Search Results ({{ poems.length }} poems found)</h2>
+  @for (poem of poems; track poem.title + poem.author) {
+    <app-poem-item [poem]="poem" />
+  }
+</div>

@@ -1,0 +1,45 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form">
+  <div class="form-group">
+    <label class="form-label">Search by:</label>
+    <div class="radio-group">
+      <label class="radio-label">
+        <input
+          type="radio"
+          formControlName="mode"
+          [value]="SearchMode.AUTHOR"
+        />
+        Author
+      </label>
+      <label class="radio-label">
+        <input
+          type="radio"
+          formControlName="mode"
+          [value]="SearchMode.TITLE"
+        />
+        Title
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="query" class="form-label">Search query:</label>
+    <input
+      id="query"
+      type="text"
+      formControlName="query"
+      class="form-input"
+      placeholder="Enter search term (min 2 characters)"
+    />
+    @if (searchForm.get('query')?.invalid && searchForm.get('query')?.touched) {
+      <div class="error-text">Please enter at least 2 characters</div>
+    }
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="searchForm.invalid"
+    class="submit-button"
+  >
+    Search
+  </button>
+</form>

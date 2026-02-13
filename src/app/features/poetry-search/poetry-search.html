@@ -1,0 +1,17 @@
+<div class="poetry-search-container">
+  <h1>Poetry Search</h1>
+
+  <app-search-form (search)="onSearch($event)" />
+
+  @if (loading) {
+    <app-loading-spinner />
+  }
+
+  @if (error) {
+    <app-error-display [error]="error" />
+  }
+
+  @if (!loading && !error && poems.length > 0) {
+    <app-poem-list [poems]="poems" />
+  }
+</div>

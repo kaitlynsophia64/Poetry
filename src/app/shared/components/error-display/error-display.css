@@ -1,0 +1,21 @@
+.error-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  color: #c33;
+}
+
+.error-icon {
+  font-size: 24px;
+}
+
+.error-message {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
