@@ -32,12 +32,15 @@ export class PoetrySearch {
       ? this.poetryService.searchByAuthor(params.query)
       : this.poetryService.searchByTitle(params.query);
 
-    search$.pipe(
-      catchError(err => {
+    search$.subscribe({
+      next: (poems) => {
+        this.poems = poems;
+        this.loading = false;
+      },
+      error: (err) => {
         this.error = err;
-        return of([]);
-      }),
-      finalize(() => this.loading = false)
-    ).subscribe(poems => this.poems = poems);
+        this.loading = false;
+      }
+    });
   }
 }
