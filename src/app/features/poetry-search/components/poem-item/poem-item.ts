@@ -10,4 +10,9 @@ import { Poem } from '../../../../core/models/poem.model';
 })
 export class PoemItem {
   @Input() poem!: Poem;
+  expanded = false;
+
+  toggleExpand(): void {
+    this.expanded = !this.expanded;
+  }
 }

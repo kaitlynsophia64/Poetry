@@ -1,4 +1,22 @@
-<div class="poem-item">
-  <h3 class="poem-title">{{ poem.title }}</h3>
-  <p class="poem-author">by {{ poem.author }}</p>
+<div class="poem-item" (click)="toggleExpand()">
+  <div class="poem-header">
+    <div>
+      <h3 class="poem-title">{{ poem.title }}</h3>
+      <p class="poem-author">by {{ poem.author }}</p>
+    </div>
+    <span class="expand-icon">{{ expanded ? '▼' : '▶' }}</span>
+  </div>
+
+  @if (expanded) {
+    <div class="poem-details">
+      <div class="poem-meta">
+        <span class="line-count">{{ poem.linecount }} lines</span>
+      </div>
+      <div class="poem-text">
+        @for (line of poem.lines; track $index) {
+          <p class="poem-line">{{ line }}</p>
+        }
+      </div>
+    </div>
+  }
 </div>
