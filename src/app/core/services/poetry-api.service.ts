@@ -44,6 +44,16 @@ export class PoetryApiService {
   }
 
   private validateAndTransform(response: any): Poem[] {
+    // Check if response is a PoetryDB error object
+    if (response && typeof response === 'object' && 'status' in response && 'reason' in response) {
+      const status = parseInt(response.status);
+      throw new ApiError(
+        status === 404 ? ErrorType.NOT_FOUND : ErrorType.API_ERROR,
+        response.reason || 'Error from PoetryDB API',
+        status
+      );
+    }
+
     // Check if response is an array
     if (!Array.isArray(response)) {
       throw new ApiError(
