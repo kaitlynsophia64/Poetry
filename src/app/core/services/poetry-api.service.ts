@@ -47,9 +47,13 @@ export class PoetryApiService {
     // Check if response is a PoetryDB error object
     if (response && typeof response === 'object' && 'status' in response && 'reason' in response) {
       const status = parseInt(response.status);
+      const userMessage = status === 404
+        ? 'No poems found matching your search. Please try a different author or title.'
+        : 'Error from PoetryDB API. Please try again later.';
+
       throw new ApiError(
         status === 404 ? ErrorType.NOT_FOUND : ErrorType.API_ERROR,
-        response.reason || 'Error from PoetryDB API',
+        userMessage,
         status
       );
     }
