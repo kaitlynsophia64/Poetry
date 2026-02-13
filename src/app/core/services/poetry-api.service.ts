@@ -43,6 +43,27 @@ export class PoetryApiService {
     );
   }
 
+  searchByAuthorAndTitle(author: string, title: string): Observable<Poem[]> {
+    if (!author || author.trim().length < 2) {
+      return throwError(() => new ApiError(
+        ErrorType.VALIDATION_ERROR,
+        'Author name must be at least 2 characters.'
+      ));
+    }
+    if (!title || title.trim().length < 2) {
+      return throwError(() => new ApiError(
+        ErrorType.VALIDATION_ERROR,
+        'Title must be at least 2 characters.'
+      ));
+    }
+
+    const url = `${this.baseUrl}/author,title/${encodeURIComponent(author.trim())};${encodeURIComponent(title.trim())}`;
+    return this.http.get<any>(url).pipe(
+      map(response => this.validateAndTransform(response)),
+      catchError(error => throwError(() => error))
+    );
+  }
+
   private validateAndTransform(response: any): Poem[] {
     // Check if response is a PoetryDB error object
     if (response && typeof response === 'object' && 'status' in response && 'reason' in response) {

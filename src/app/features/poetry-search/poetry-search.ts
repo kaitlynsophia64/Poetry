@@ -26,14 +26,19 @@ export class PoetrySearch {
     private cdr: ChangeDetectorRef
   ) {}
 
-  onSearch(params: { mode: SearchMode; query: string }): void {
+  onSearch(params: { mode: SearchMode; query: string; author?: string; title?: string }): void {
     this.loading = true;
     this.error = null;
     this.poems = [];
 
-    const search$ = params.mode === SearchMode.AUTHOR
-      ? this.poetryService.searchByAuthor(params.query)
-      : this.poetryService.searchByTitle(params.query);
+    let search$;
+    if (params.mode === SearchMode.BOTH) {
+      search$ = this.poetryService.searchByAuthorAndTitle(params.author!, params.title!);
+    } else if (params.mode === SearchMode.AUTHOR) {
+      search$ = this.poetryService.searchByAuthor(params.query);
+    } else {
+      search$ = this.poetryService.searchByTitle(params.query);
+    }
 
     search$.subscribe({
       next: (poems) => {

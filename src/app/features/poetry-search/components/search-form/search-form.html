@@ -18,22 +18,62 @@
         />
         Title
       </label>
+      <label class="radio-label">
+        <input
+          type="radio"
+          formControlName="mode"
+          [value]="SearchMode.BOTH"
+        />
+        Both
+      </label>
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="query" class="form-label">Search query:</label>
-    <input
-      id="query"
-      type="text"
-      formControlName="query"
-      class="form-input"
-      placeholder="Enter search term (min 2 characters)"
-    />
-    @if (searchForm.get('query')?.invalid && searchForm.get('query')?.touched) {
-      <div class="error-text">Please enter at least 2 characters</div>
-    }
-  </div>
+  @if (!isBothMode) {
+    <div class="form-group">
+      <label for="query" class="form-label">Search query:</label>
+      <input
+        id="query"
+        type="text"
+        formControlName="query"
+        class="form-input"
+        placeholder="Enter search term (min 2 characters)"
+      />
+      @if (searchForm.get('query')?.invalid && searchForm.get('query')?.touched) {
+        <div class="error-text">Please enter at least 2 characters</div>
+      }
+    </div>
+  }
+
+  @if (isBothMode) {
+    <div class="form-group">
+      <label for="author" class="form-label">Author name:</label>
+      <input
+        id="author"
+        type="text"
+        formControlName="author"
+        class="form-input"
+        placeholder="Enter author name (min 2 characters)"
+      />
+      @if (searchForm.get('author')?.invalid && searchForm.get('author')?.touched) {
+        <div class="error-text">Please enter at least 2 characters</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="title" class="form-label">Title:</label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        class="form-input"
+        placeholder="Enter title (min 2 characters)"
+      />
+      @if (searchForm.get('title')?.invalid && searchForm.get('title')?.touched) {
+        <div class="error-text">Please enter at least 2 characters</div>
+      }
+    </div>
+  }
 
   <button
     type="submit"
