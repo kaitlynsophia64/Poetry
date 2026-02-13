@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { catchError, finalize, of } from 'rxjs';
 import { SearchForm } from './components/search-form/search-form';
 import { PoemList } from './components/poem-list/poem-list';
@@ -21,7 +21,10 @@ export class PoetrySearch {
   loading = false;
   error: ApiError | null = null;
 
-  constructor(private poetryService: PoetryApiService) {}
+  constructor(
+    private poetryService: PoetryApiService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   onSearch(params: { mode: SearchMode; query: string }): void {
     this.loading = true;
@@ -36,10 +39,12 @@ export class PoetrySearch {
       next: (poems) => {
         this.poems = poems;
         this.loading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.error = err;
         this.loading = false;
+        this.cdr.detectChanges();
       }
     });
   }
