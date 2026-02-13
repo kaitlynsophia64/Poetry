@@ -4,6 +4,7 @@ import { SearchMode } from '../../../../core/models/search-mode.enum';
 
 @Component({
   selector: 'app-search-form',
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './search-form.html',
   styleUrl: './search-form.css',

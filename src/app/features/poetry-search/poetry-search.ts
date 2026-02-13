@@ -10,6 +10,7 @@ import { SearchMode } from '../../core/models/search-mode.enum';
 import { ApiError } from '../../core/models/api-error.model';
 
 @Component({
+  standalone: true,
   selector: 'app-poetry-search',
   imports: [SearchForm, PoemList, LoadingSpinner, ErrorDisplay],
   templateUrl: './poetry-search.html',
