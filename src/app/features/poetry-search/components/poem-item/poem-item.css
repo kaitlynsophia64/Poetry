@@ -68,10 +68,6 @@
   background-color: #9b59b6;
 }
 
-.language {
-  background-color: #2ecc71;
-}
-
 .poem-text {
   max-height: 400px;
   overflow-y: auto;
